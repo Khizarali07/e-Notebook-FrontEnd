@@ -15,7 +15,7 @@ export default function Notesitem({features,image,title,description,date,style1,
     <>
     
     <div className="card" style={style1}>
-    <div class="card-header text-center" style={{height:"5vh",fontSize:"1.3vw"}}>{features}</div>
+    <div className="card-header text-center" style={{height:"5vh",fontSize:"1.3vw"}}>{features}</div>
 
   <img src={image===null?defaultImg:image} className="card-img-top mx-auto d-block" alt="Note img" style={style2}/>
   <div className="card-body">

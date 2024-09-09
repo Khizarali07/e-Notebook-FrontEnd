@@ -8,7 +8,7 @@ export default function Navbar() {
   const handlelogout = async (evt) => {
     setemail("");
   
-    const response = await fetch("http://localhost:5000/api/handlelogout", {
+     await fetch("http://localhost:5000/api/handlelogout", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -17,9 +17,8 @@ export default function Navbar() {
     });
     handleauth();
   }
-
+// eslint-disable-next-line
   const handleauth = async (evt) => {
-    console.log("it is not running")
    
     const response = await fetch("http://localhost:5000/api/handleauth", {
       method: "GET",
@@ -34,8 +33,9 @@ export default function Navbar() {
 
   useEffect(()=>{
     handleauth();
+    
   },[handleauth])
-
+// eslint-disable-next-line
 
   return (
     <>

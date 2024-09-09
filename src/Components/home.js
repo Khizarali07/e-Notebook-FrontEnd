@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 function Home( {setProgress, userLogin }) {
   let [data, setdata] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [img, setImg] = useState("");
   const [_id, set_id] = useState("");
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
@@ -29,7 +28,7 @@ function Home( {setProgress, userLogin }) {
   const handleedits = async (evt) => {
     evt.preventDefault();
 
-    const response = await fetch("http://localhost:5000/api/editingnote", {
+    await fetch("http://localhost:5000/api/editingnote", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -81,7 +80,6 @@ function Home( {setProgress, userLogin }) {
   };
 
   const handleauth = async (evt) => {
-    console.log("it is not running")
    
     const response = await fetch("http://localhost:5000/api/handleauth", {
       method: "GET",
@@ -97,6 +95,7 @@ function Home( {setProgress, userLogin }) {
   useEffect(() => {
     fetchallnotes();
     handleauth();
+    // eslint-disable-next-line
   }, []);
 
   return (
@@ -106,8 +105,8 @@ function Home( {setProgress, userLogin }) {
       
       <div className="container-fluid row my-4" style={{ height: "80vh", overflow: "auto" }} id="one" >
       <h3>This is your Digital Notebook Where you can save all your information and notes safely</h3>
-      <h5 style={{width:"19vw",height:"6vh",position:"absolute",left:"42vw",top:"42vh"}}>Click Here to Sign In</h5> 
-      <Link to="/signIn" className="btn btn-danger text-center" style={{width:"6vw",height:"6vh",position:"absolute",left:"47vw",top:"47vh"}}>Sign In</Link></div>
+      <h5 style={{width:"28vw",position:"absolute",left:"45vw",top:"42vh"}}>Click Here to Sign In</h5> 
+      <Link to="/signIn" className="btn btn-danger text-center mt-5" style={{width:"14vw",height:"6vh",position:"absolute",left:"47vw",top:"47vh"}}>Sign In</Link></div>
       
       :
       <div

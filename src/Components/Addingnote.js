@@ -50,7 +50,6 @@ export default function AddingNote({ setProgress }) {
   };
 
   const handleauth = async (evt) => {
-    console.log("it is not running")
    
     const response = await fetch("http://localhost:5000/api/handleauth", {
       method: "GET",
