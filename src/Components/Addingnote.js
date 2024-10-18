@@ -8,8 +8,7 @@ export default function AddingNote({ setProgress }) {
   const [date, setDate] = useState(Date);
   const [imageUrl, setImageUrl] = useState("");
 
-  const [email,setemail] = useState("");
-
+  const [email, setemail] = useState("");
 
   let sty1 = { width: "40vw", height: "70vh" };
   let sty2 = { width: "16vw", height: "24vh" };
@@ -32,39 +31,43 @@ export default function AddingNote({ setProgress }) {
   }, [img]);
 
   const handleSubmit = async (evt) => {
-    if (email!==""){
-    evt.preventDefault();
+    if (email !== "") {
+      evt.preventDefault();
 
-    alert("Your Notes added Successfully");
-    await fetch("http://localhost:5000/api/addingnote", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ imageUrl, title, desc, date }),
-    });
-  }
-  else {
-    alert("Please login first to add notes !!!");
-  }
+      alert("Your Notes added Successfully");
+      await fetch(
+        "https://e-notebook-backend-production.up.railway.app/api/addingnote",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ imageUrl, title, desc, date }),
+        }
+      );
+    } else {
+      alert("Please login first to add notes !!!");
+    }
   };
 
   const handleauth = async (evt) => {
-   
-    const response = await fetch("http://localhost:5000/api/handleauth", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await fetch(
+      "https://e-notebook-backend-production.up.railway.app/api/handleauth",
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
 
     const auth = await response.json();
     setemail(auth);
-  }
+  };
 
-  useEffect(()=>{
+  useEffect(() => {
     handleauth();
-  },[])
+  }, []);
 
   return (
     <>

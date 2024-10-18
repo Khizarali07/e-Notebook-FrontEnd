@@ -28,7 +28,7 @@ function App(user) {
         color='#ffffff'
         progress={loadingbar}
       />
-
+      
     <Routes>
         <Route path="/" element={<Home setProgress={setProgress} userLogin="null" />} />
         <Route path="/addingnotes" element={<AddingNote/>} />

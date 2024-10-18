@@ -2,46 +2,49 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function Navbar() {
-
-  const [email,setemail] = useState("")
+  const [email, setemail] = useState("");
 
   const handlelogout = async (evt) => {
     setemail("");
-  
-     await fetch("http://localhost:5000/api/handlelogout", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email }),
-    });
+
+    await fetch(
+      "https://e-notebook-backend-production.up.railway.app/api/handlelogout",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      }
+    );
     handleauth();
-  }
-// eslint-disable-next-line
+  };
+  // eslint-disable-next-line
   const handleauth = async (evt) => {
-   
-    const response = await fetch("http://localhost:5000/api/handleauth", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await fetch(
+      "https://e-notebook-backend-production.up.railway.app/api/handleauth",
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
 
     const auth = await response.json();
     setemail(auth);
-  }
+  };
 
-  useEffect(()=>{
+  useEffect(() => {
     handleauth();
-    
-  },[handleauth])
-// eslint-disable-next-line
+  }, [handleauth]);
+  // eslint-disable-next-line
 
   return (
     <>
       <nav
         className="navbar navbar-expand-lg"
-        style={{ "backgroundColor": "yellowgreen" }}
+        style={{ backgroundColor: "yellowgreen" }}
       >
         <div className="container-fluid">
           <Link className="navbar-brand" to="/">
@@ -85,19 +88,32 @@ export default function Navbar() {
                 </Link>
               </li>
             </ul>
-            
-            
-            {email!==""?
-              <form className="d-flex" role="search">
-        <Link className="btn btn-danger me-3" type="submit" to="/signIn" onClick={handlelogout}>Logout</Link>
-      </form>
-            :
-            <form className="d-flex" role="search">
-        <Link className="btn btn-danger me-3" type="submit" to="/signIn" >Sign in</Link>
-        <Link className="btn btn-danger" type="submit" to="/signUp">Sign up</Link>
-      </form>
-}
 
+            {email !== "" ? (
+              <form className="d-flex" role="search">
+                <Link
+                  className="btn btn-danger me-3"
+                  type="submit"
+                  to="/signIn"
+                  onClick={handlelogout}
+                >
+                  Logout
+                </Link>
+              </form>
+            ) : (
+              <form className="d-flex" role="search">
+                <Link
+                  className="btn btn-danger me-3"
+                  type="submit"
+                  to="/signIn"
+                >
+                  Sign in
+                </Link>
+                <Link className="btn btn-danger" type="submit" to="/signUp">
+                  Sign up
+                </Link>
+              </form>
+            )}
           </div>
         </div>
       </nav>
